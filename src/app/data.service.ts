@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-import {map, tap} from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
 import { Artist, IArtistResponse } from './model/artist';
 import { environment } from '../environments/environment';
 
@@ -23,8 +23,17 @@ export class DataService {
           .filter(artist => artist.name.includes(filter.name))
 
         return response;
-      })
+      }),
+      catchError(this.handleError<IArtistResponse>('/artist/findAll/'))
       );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      // App continues to run by returning an empty result.
+      return of(result);
+    };
   }
 
   // getArtists(): Observable<Artist[]>{
