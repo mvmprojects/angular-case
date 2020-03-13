@@ -15,7 +15,7 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   search(filter: {name: string} = {name: ''}, page = 1): Observable<IArtistResponse> {
-    return this.http.get<IArtistResponse>(this.apiUrl + '/artist/findAll/') //
+    return this.http.get<IArtistResponse>(this.apiUrl + '/artist/getlist/') //
     .pipe(
       tap((response: IArtistResponse) => {
         response.results = response.results
@@ -24,7 +24,7 @@ export class DataService {
 
         return response;
       }),
-      catchError(this.handleError<IArtistResponse>('/artist/findAll/'))
+      catchError(this.handleError<IArtistResponse>('/artist/getlist/'))
       );
   }
 
