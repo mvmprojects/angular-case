@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Artist } from './model/artist';
+import { Album } from './model/album';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'case-app';
+
+  handleReceivedArtist(data) {
+    console.log('received artist: ', data)
+  }
+
+  handleReceivedAlbum(data) {
+    console.log('received album: ', data);
+  }
 }

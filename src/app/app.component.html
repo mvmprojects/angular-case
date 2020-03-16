@@ -1,1 +1,8 @@
-<app-search-bar></app-search-bar>
+<app-search-bar
+        (onArtistSelection)="handleReceivedArtist($event)" >
+</app-search-bar>
+<app-album-list 
+        [inputArtist]="selectedArtist" 
+        (clickEvent)="handleReceivedAlbum($event)" >
+</app-album-list>
+<app-track-list></app-track-list>  

@@ -8,11 +8,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule, MatInputModule, MatAutocompleteModule, MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
+import { AlbumListComponent } from './component/album-list/album-list.component';
+import { TrackListComponent } from './component/track-list/track-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    AlbumListComponent,
+    TrackListComponent
   ],
   imports: [
     BrowserModule,

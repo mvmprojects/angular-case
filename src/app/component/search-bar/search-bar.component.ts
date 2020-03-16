@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Artist, IArtistResponse } from '../../model/artist';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DataService } from '../../data.service';
@@ -15,6 +15,7 @@ export class SearchBarComponent implements OnInit {
   isLoading = false;
   filteredArtists: Artist[] = [];
   mainForm: FormGroup;
+  @Output() onArtistSelection = new EventEmitter();
 
   constructor(
     private fBuilder: FormBuilder, 
@@ -39,6 +40,15 @@ export class SearchBarComponent implements OnInit {
         )
       )
       .subscribe(artists => this.filteredArtists = artists.results);    
+  }
+
+  handleSelected(artist: Artist) {
+    console.log('selection from search-bar: ', artist)
+    this.onArtistSelection.emit(artist);
+  }  
+
+  displayFunc(artist: Artist) {
+    if (artist) return artist.name;
   }
 
 }

@@ -35,8 +35,4 @@ export class DataService {
       return of(result);
     };
   }
-
-  // getArtists(): Observable<Artist[]>{
-  //   return this.http.get<Artist[]>(this.postUrl);
-  // }  
 }
