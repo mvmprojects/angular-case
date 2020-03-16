@@ -1,1 +1,4 @@
-<button (click)="handleClick()">click me</button>
+<small *ngIf="!inputArtist">{{albumText}}</small>
+<div *ngIf="inputArtist">{{albumText}}
+    <!-- <button (click)="handleClick()">click me</button> -->
+</div>

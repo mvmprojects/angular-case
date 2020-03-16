@@ -9,9 +9,11 @@ import { Album } from './model/album';
 })
 export class AppComponent {
   title = 'case-app';
+  selectedArtist: Artist;
 
-  handleReceivedArtist(data) {
-    console.log('received artist: ', data)
+  handleReceivedArtist(artist: Artist) {
+    console.log('received artist: ', artist)
+    this.selectedArtist = artist;
   }
 
   handleReceivedAlbum(data) {

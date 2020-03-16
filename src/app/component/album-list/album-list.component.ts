@@ -11,10 +11,18 @@ export class AlbumListComponent implements OnInit {
 
   @Input() inputArtist: Artist;
   @Output() clickEvent = new EventEmitter();
+  albumText: string;
 
   constructor() { }
 
   ngOnInit() {
+    this.albumText = 'No artist selected';
+  }
+
+  ngOnChanges() {
+    if (this.inputArtist) {
+      this.albumText = 'Albums by ' + this.inputArtist.name;
+    }
   }
 
   handleClick() {
