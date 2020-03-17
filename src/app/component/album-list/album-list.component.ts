@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Artist } from '../../model/artist';
 import { Album } from '../../model/album';
+import { AlbumService } from '../../service/album.service';
 
 @Component({
   selector: 'app-album-list',
@@ -11,22 +12,29 @@ export class AlbumListComponent implements OnInit {
 
   @Input() inputArtist: Artist;
   @Output() clickEvent = new EventEmitter();
-  albumText: string;
+  artistText: string;
+  albumList: Album[];
 
-  constructor() { }
+  constructor(private albumService: AlbumService) { }
 
   ngOnInit() {
-    this.albumText = 'No artist selected';
+    this.artistText = 'No artist selected';
   }
 
   ngOnChanges() {
     if (this.inputArtist) {
-      this.albumText = 'Albums by ' + this.inputArtist.name;
+      this.getAlbums(this.inputArtist.id) 
+      this.artistText = 'Albums by ' + this.inputArtist.name;
     }
   }
 
-  handleClick() {
-    this.clickEvent.emit('test');
+  getAlbums(id: number): void {
+    this.albumService.getByArtistId(id)
+    .subscribe(albums => this.albumList = albums);
+  }
+
+  handleClick(album: Album) {
+    this.clickEvent.emit('test ' + album.name);
   }
 
 }

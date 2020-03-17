@@ -1,4 +1,9 @@
-<small *ngIf="!inputArtist">{{albumText}}</small>
-<div *ngIf="inputArtist">{{albumText}}
-    <!-- <button (click)="handleClick()">click me</button> -->
+<small *ngIf="!inputArtist">{{artistText}}</small>
+<div *ngIf="inputArtist">
+  <h3>{{artistText}}</h3>
+  <mat-list>
+      <mat-list-item *ngFor="let album of albumList" (click)="handleClick(album)" style="height: 1.5em">
+        {{album.name}}
+      </mat-list-item>
+  </mat-list>
 </div>
