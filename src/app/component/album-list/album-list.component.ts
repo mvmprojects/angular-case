@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Artist } from '../../model/artist';
 import { Album } from '../../model/album';
 import { AlbumService } from '../../service/album.service';
+import { catchError, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-album-list',
@@ -14,6 +15,7 @@ export class AlbumListComponent implements OnInit {
   @Output() clickEvent = new EventEmitter();
   artistText: string;
   albumList: Album[];
+  isLoading = true;
 
   constructor(private albumService: AlbumService) { }
 
@@ -30,6 +32,14 @@ export class AlbumListComponent implements OnInit {
 
   getAlbums(id: number): void {
     this.albumService.getByArtistId(id)
+    .pipe(
+      catchError(error => {
+        throw error;
+      }),
+      finalize(() => {
+        this.isLoading = false;
+      })
+    )    
     .subscribe(albums => this.albumList = albums);
   }
 

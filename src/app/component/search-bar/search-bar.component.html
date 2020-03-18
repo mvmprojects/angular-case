@@ -1,10 +1,10 @@
-<form class="example-form" [formGroup]='mainForm'>
-    <mat-form-field class="example-full-width">
+<form [formGroup]='mainForm'>
+    <mat-form-field>
       <input matInput placeholder="Choose by artist" [matAutocomplete]="auto" formControlName='userInput'>
     </mat-form-field>  
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFunc"
     (optionSelected)="handleSelected($event.option.value)">
-      <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option>
+      <mat-option *ngIf="isLoading"><mat-spinner diameter="50"></mat-spinner></mat-option>
       <ng-container *ngIf="!isLoading">
         <mat-option *ngFor="let artist of filteredArtists" [value]="artist">
           <span>{{ artist.name }}</span>

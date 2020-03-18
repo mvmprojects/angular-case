@@ -10,13 +10,15 @@ import { Album } from './model/album';
 export class AppComponent {
   title = 'case-app';
   selectedArtist: Artist;
+  selectedAlbum: Album;
 
   handleReceivedArtist(artist: Artist) {
     console.log('received artist: ', artist)
     this.selectedArtist = artist;
   }
 
-  handleReceivedAlbum(data) {
-    console.log('received album: ', data);
+  handleReceivedAlbum(album: Album) {
+    console.log('received album: ', album);
+    this.selectedAlbum = album;    
   }
 }
