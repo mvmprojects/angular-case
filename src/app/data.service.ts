@@ -20,7 +20,8 @@ export class DataService {
       tap((response: IArtistResponse) => {
         response.results = response.results
           .map(artist => new Artist(artist.id, artist.name))
-          .filter(artist => artist.name.includes(filter.name))
+          // .filter(artist => artist.name.includes(filter.name))
+          .filter(artist => new RegExp(filter.name, 'i').test(artist.name))
 
         return response;
       }),
