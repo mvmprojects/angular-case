@@ -1,1 +1,10 @@
-<p>track-list works!</p>
+<small *ngIf="!inputAlbum">{{albumText}}</small>
+<div *ngIf="inputAlbum">
+  <h3>{{albumText}}</h3>
+  <div *ngIf="isLoading"><mat-spinner diameter="50"></mat-spinner></div>
+  <mat-list *ngIf="!isLoading">
+      <mat-list-item *ngFor="let track of trackList" style="height: 1.5em">
+        {{track.name}}
+      </mat-list-item>
+  </mat-list>
+</div>

@@ -5,4 +5,7 @@
         [inputArtist]="selectedArtist" 
         (clickEvent)="handleReceivedAlbum($event)" >
 </app-album-list>
-<app-track-list></app-track-list>  
+<br>
+<app-track-list
+        [inputAlbum]="selectedAlbum">
+</app-track-list>  

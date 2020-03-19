@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Album } from '../../model/album';
 import { TrackService } from '../../service/track.service';
 import { Track } from '../../model/track';
+import { catchError, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-track-list',
@@ -10,7 +11,7 @@ import { Track } from '../../model/track';
 })
 export class TrackListComponent implements OnInit {
 
-  @Input() selectedAlbum: Album;
+  @Input() inputAlbum: Album;
   trackList: Track[];
   albumText: string;
   isLoading = true;
@@ -22,11 +23,22 @@ export class TrackListComponent implements OnInit {
   }
 
   ngOnChanges() {
-
+    if (this.inputAlbum) {
+      this.getTracks(this.inputAlbum.id) 
+      this.albumText = 'Tracks on album: ' + this.inputAlbum.name;
+    }
   }
 
   getTracks(id: number): void {
     this.trackService.getByAlbumId(id)
+    .pipe(
+      catchError(error => {
+        throw error;
+      }),
+      finalize(() => {
+        this.isLoading = false;
+      })
+    )        
     .subscribe(tracks => this.trackList = tracks);
   }
 

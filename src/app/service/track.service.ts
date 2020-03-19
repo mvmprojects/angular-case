@@ -15,10 +15,6 @@ export class TrackService {
   constructor(
     public http: HttpClient) { }
 
-  // httpOptions = {
-  //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  // };
-
   getByAlbumId(id: number): Observable<Track[]> {
     const url = `${this.apiUrl + `byalbumid`}/${id}`;
     return this.http.get<Track[]>(url).pipe(
@@ -26,14 +22,23 @@ export class TrackService {
     );
   }  
 
-  // getTrackById(id: number): Observable<Track> {
-  //   const url = `${this.apiUrl + `track`}/${id}`;
-  //   return this.http.get<Track>(url);
+  // postTrackDto(track: Track) {
+  //   return this.http.post(this.apiUrl + 'create', track, { observe: 'response' });
   // }
 
-  // postTrackDto(track: Track) {
-  //   return this.http.post(this.apiUrl + 'track/create/', track, { observe: 'response' });
-  // }
+  postTrackDto(track: Track): Observable<Track> {
+    return this.http.post<Track>(this.apiUrl + `create`, track).pipe(
+      catchError(this.handleError<Track>(`postTrack`, track))
+    );
+  }  
+
+  deleteTrack(id: number): Observable<{}> {
+    const url = `${this.apiUrl + `delete`}/${id}`;
+    return this.http.delete(url)
+      .pipe(
+        catchError(this.handleError('deleteTrack'))
+      );
+  }  
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
