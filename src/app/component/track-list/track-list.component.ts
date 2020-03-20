@@ -14,18 +14,21 @@ export class TrackListComponent implements OnInit {
   @Input() inputAlbum: Album;
   trackList: Track[];
   albumText: string;
+  albumTextInit = 'No album selected';
   isLoading = true;
 
   constructor(private trackService: TrackService) { }
 
   ngOnInit() {
-    this.albumText = 'No album selected';    
+    this.albumText = this.albumTextInit;    
   }
 
   ngOnChanges() {
     if (this.inputAlbum) {
       this.getTracks(this.inputAlbum.id) 
       this.albumText = 'Tracks on album: ' + this.inputAlbum.name;
+    } else {
+      this.albumText = this.albumTextInit;
     }
   }
 
@@ -62,6 +65,12 @@ export class TrackListComponent implements OnInit {
       })
     )        
     .subscribe();
+  }
+
+  millisToMMSS(millis) {
+    const minutes = Math.floor(millis / 60000);
+    const seconds = ((millis % 60000) / 1000).toFixed(0);
+    return (parseInt(seconds) == 60 ? (minutes+1) + ":00" : minutes + ":" + (parseInt(seconds) < 10 ? "0" : "") + seconds);
   }
 
 }

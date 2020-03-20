@@ -15,6 +15,7 @@ export class AppComponent {
   handleReceivedArtist(artist: Artist) {
     console.log('received artist: ', artist)
     this.selectedArtist = artist;
+    this.selectedAlbum = null; // clear when selecting a new artist
   }
 
   handleReceivedAlbum(album: Album) {

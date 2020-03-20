@@ -15,13 +15,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { AlbumListComponent } from './component/album-list/album-list.component';
 import { TrackListComponent } from './component/track-list/track-list.component';
+import { EditTrackComponent } from './component/edit-track/edit-track.component';
+import { AddTrackComponent } from './component/add-track/add-track.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchBarComponent,
     AlbumListComponent,
-    TrackListComponent
+    TrackListComponent,
+    EditTrackComponent,
+    AddTrackComponent
   ],
   imports: [
     BrowserModule,
