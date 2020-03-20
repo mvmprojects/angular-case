@@ -33,7 +33,7 @@ export class TrackService {
   }  
 
   deleteTrack(id: number): Observable<{}> {
-    const url = `${this.apiUrl + `delete`}/${id}`;
+    const url = this.apiUrl + id;
     return this.http.delete(url)
       .pipe(
         catchError(this.handleError('deleteTrack'))

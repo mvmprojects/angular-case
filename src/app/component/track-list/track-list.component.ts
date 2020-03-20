@@ -30,6 +30,7 @@ export class TrackListComponent implements OnInit {
   }
 
   getTracks(id: number): void {
+    this.isLoading = true;
     this.trackService.getByAlbumId(id)
     .pipe(
       catchError(error => {
@@ -40,6 +41,27 @@ export class TrackListComponent implements OnInit {
       })
     )        
     .subscribe(tracks => this.trackList = tracks);
+  }
+
+  addTrack() {
+
+  }
+
+  editTrack(track: Track) {
+
+  }
+
+  deleteTrack(track: Track) {
+    this.trackService.deleteTrack(track.id)
+    .pipe(
+      catchError(error => {
+        throw error;
+      }),
+      finalize(() => {
+        this.getTracks(this.inputAlbum.id);
+      })
+    )        
+    .subscribe();
   }
 
 }

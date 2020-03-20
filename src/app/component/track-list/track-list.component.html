@@ -1,10 +1,28 @@
 <small *ngIf="!inputAlbum">{{albumText}}</small>
 <div *ngIf="inputAlbum">
   <h3>{{albumText}}</h3>
+  
   <div *ngIf="isLoading"><mat-spinner diameter="50"></mat-spinner></div>
-  <mat-list *ngIf="!isLoading">
-      <mat-list-item *ngFor="let track of trackList" style="height: 1.5em">
-        {{track.name}}
-      </mat-list-item>
-  </mat-list>
+
+  <button *ngIf="!isLoading" style="width:120px" (click)="addTrack()">Add Track</button>
+  <table *ngIf="!isLoading">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Duration</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let track of trackList">
+      <td>{{track.id}}</td>
+      <td>{{track.name}}</td>
+      <td>{{track.duration}}</td>
+      <td>
+        <button (click)="editTrack(track)" style="margin-left: 20px;">Edit</button>
+        <button (click)="deleteTrack(track)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>  
 </div>
