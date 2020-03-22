@@ -1,5 +1,5 @@
-<small *ngIf="!inputs.album">{{albumText}}</small>
-<div *ngIf="inputs.album">
+<small *ngIf="!inputAlbum">{{albumText}}</small>
+<div *ngIf="inputAlbum">
   <h3>{{albumText}}</h3>
   
   <div *ngIf="isLoading"><mat-spinner diameter="50"></mat-spinner></div>

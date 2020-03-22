@@ -15,10 +15,7 @@ import { AddTrackComponent } from '../add-track/add-track.component';
 })
 export class TrackListComponent implements OnInit {
 
-  // @Input() inputAlbum: Album;
-  @Input() inputs: {album: Album; artist: Artist}
-  inputAlbum: Album;
-  inputArtist: Artist;
+  @Input() inputAlbum: Album;
   trackList: Track[];
   albumText: string;
   albumTextInit = 'No album selected';
@@ -34,10 +31,7 @@ export class TrackListComponent implements OnInit {
   }
 
   ngOnChanges() {
-    console.log('test ', this.inputs)
-    if (this.inputs.album) {
-      this.inputAlbum = this.inputs.album;
-      this.inputArtist = this.inputs.artist;      
+    if (this.inputAlbum) {
       this.getTracks(this.inputAlbum.id) 
       this.albumText = 'Tracks on album: ' + this.inputAlbum.name;
     } else {
@@ -63,8 +57,8 @@ export class TrackListComponent implements OnInit {
     let newTrack = new Track();
     newTrack.albumId = this.inputAlbum.id,
     newTrack.albumName = this.inputAlbum.name,
-    newTrack.artistName = this.inputArtist.name,
-    newTrack.artistId = this.inputArtist.id
+    newTrack.artistName = this.inputAlbum.artistName,
+    newTrack.artistId = this.inputAlbum.artistId
 
     const dialogRef = this._dialog.open(AddTrackComponent, {
       width: '360px'
