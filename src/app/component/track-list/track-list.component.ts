@@ -65,6 +65,7 @@ export class TrackListComponent implements OnInit {
   }
 
   editTrack(track: Track) {
+    console.log(track);
     const mappedTrack = this.mapTrackToEditable(track);
     // open modal
     const dialogRef = this._dialog.open(EditTrackComponent, {
@@ -75,21 +76,21 @@ export class TrackListComponent implements OnInit {
       console.log('The dialog was closed');
       console.log(result)
       if (result) {
-        // this.dataSource.data[result.position - 1] = result
-        // this.dataSource._updateChangeSubscription();
+        track.name = result.name;
+        track.duration = this.convertToMillis(result.minutes, result.seconds);
+        console.log(track);
+        this.trackService.updateTrack(track)
+        .pipe(
+          catchError(error => {
+            throw error;
+          }),
+          finalize(() => {
+            this.getTracks(this.inputAlbum.id);
+          })
+        )        
+        .subscribe();    
       }
-    });    
-
-    // this.trackService.updateTrack(track)
-    // .pipe(
-    //   catchError(error => {
-    //     throw error;
-    //   }),
-    //   finalize(() => {
-    //     this.getTracks(this.inputAlbum.id);
-    //   })
-    // )        
-    // .subscribe();    
+    });
   }
 
   deleteTrack(track: Track) {
@@ -114,6 +115,10 @@ export class TrackListComponent implements OnInit {
       minutes: minutes,
       seconds: seconds
     }
+  }
+
+  convertToMillis(minutes: number, seconds: number): number {
+    return (minutes * 60000) + (seconds * 1000);
   }
 
   formatMillis(millis) {

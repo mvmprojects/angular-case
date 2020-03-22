@@ -27,13 +27,15 @@ export class TrackService {
   // }
 
   postTrackDto(track: Track): Observable<Track> {
-    return this.http.post<Track>(this.apiUrl + `create`, track).pipe(
+    return this.http.post<Track>(this.apiUrl + `create`, track)
+    .pipe(
       catchError(this.handleError<Track>(`postTrackDto`, track))
     );
   }  
 
   updateTrack(track: Track): Observable<Track> {
-    return this.http.post<Track>(this.apiUrl + `create`, track).pipe(
+    return this.http.put<Track>(this.apiUrl, track)
+    .pipe(
       catchError(this.handleError<Track>(`updateTrack`, track))
     );
   }    

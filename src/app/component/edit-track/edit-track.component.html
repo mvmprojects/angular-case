@@ -1,26 +1,15 @@
 <div>
     <h1>Edit Track</h1>
-    <!-- <form #trackForm="ngForm">
-        <div>
-            <label for="name">Name</label>
-            <input type="text" id="name" 
-            required
-            [(ngModel)]="trackName" name="name"
-            #name="ngModel">
-        </div>
-        <div [hidden]="name.valid || name.pristine">
-            Field is required
-        </div>
-
-        <button type="submit" (click)="updateTrack()" [disabled]="!trackForm.form.valid">Submit</button> -->
-            <!-- </form> -->
 
     <form #trackForm="ngForm">
         <mat-form-field>
-            <input matInput name="trackName" placeholder="Name" 
+            <input matInput name="trackName" placeholder="Name" #namefield="ngModel"
             [(ngModel)]="trackName" 
             required>
         </mat-form-field>
+        <small [hidden]="namefield.valid">
+            Field is required.
+        </small>
 
         <mat-form-field>
             <mat-label>Minutes</mat-label>
@@ -47,4 +36,5 @@
             </button>            
         </div>
     </form>
+
 </div>
