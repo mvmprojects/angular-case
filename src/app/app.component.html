@@ -5,7 +5,6 @@
         [inputArtist]="selectedArtist" 
         (clickEvent)="handleReceivedAlbum($event)" >
 </app-album-list>
-<br>
 <app-track-list *ngIf="selectedArtist" 
         [inputAlbum]="selectedAlbum">
 </app-track-list>  

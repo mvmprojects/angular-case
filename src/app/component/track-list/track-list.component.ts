@@ -7,6 +7,7 @@ import { EditTrackComponent } from '../edit-track/edit-track.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Artist } from '../../model/artist';
 import { AddTrackComponent } from '../add-track/add-track.component';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-track-list',

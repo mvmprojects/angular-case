@@ -1,10 +1,12 @@
-<small *ngIf="!inputArtist">{{artistText}}</small>
-<div *ngIf="inputArtist">
-  <h3>{{artistText}}</h3>
-  <div *ngIf="isLoading"><mat-spinner diameter="50"></mat-spinner></div>
-  <mat-list *ngIf="!isLoading">
-      <mat-list-item *ngFor="let album of albumList" (click)="handleClick(album)" style="height: 1.5em">
-        {{album.name}}
-      </mat-list-item>
-  </mat-list>
+<div class="simple-container">
+  <small *ngIf="!inputArtist">{{artistText}}</small>
+  <div *ngIf="inputArtist">
+    <h3>{{artistText}}</h3>
+    <div *ngIf="isLoading"><mat-spinner diameter="50"></mat-spinner></div>
+    <mat-list *ngIf="!isLoading">
+        <mat-list-item *ngFor="let album of albumList" (click)="handleClick(album)" style="height: 1.5em">
+          {{album.name}}
+        </mat-list-item>
+    </mat-list>
+  </div>
 </div>

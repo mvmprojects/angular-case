@@ -1,0 +1,13 @@
+button {
+    margin-left: 1em;
+}
+
+#trackTable {
+    border-collapse: collapse;
+}
+
+#trackTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#trackTable td, #trackTable th {
+    padding: 0.5em;
+}
