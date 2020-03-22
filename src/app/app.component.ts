@@ -13,12 +13,11 @@ export class AppComponent {
   selectedAlbum: Album;
 
   handleReceivedArtist(artist: Artist) {
-    console.log('received artist: ', artist)
     this.selectedArtist = artist;
+    this.selectedAlbum = null; // clear when selecting a new artist
   }
 
   handleReceivedAlbum(album: Album) {
-    console.log('received album: ', album);
     this.selectedAlbum = album;    
   }
 }

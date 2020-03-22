@@ -5,19 +5,28 @@ import { AppComponent } from './app.component';
 import { SearchBarComponent } from './component/search-bar/search-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatFormFieldModule, MatInputModule, MatAutocompleteModule, MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatListModule } from '@angular/material/list'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { AlbumListComponent } from './component/album-list/album-list.component';
 import { TrackListComponent } from './component/track-list/track-list.component';
+import { EditTrackComponent } from './component/edit-track/edit-track.component';
+import { AddTrackComponent } from './component/add-track/add-track.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchBarComponent,
     AlbumListComponent,
-    TrackListComponent
+    TrackListComponent,
+    EditTrackComponent,
+    AddTrackComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +39,11 @@ import { TrackListComponent } from './component/track-list/track-list.component'
     MatFormFieldModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [EditTrackComponent]
 })
 export class AppModule { }

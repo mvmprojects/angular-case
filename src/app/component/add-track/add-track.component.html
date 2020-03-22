@@ -1,0 +1,46 @@
+<div>
+    <h1>Add Track</h1>
+
+    <form #trackForm="ngForm">
+        <mat-form-field>
+            <input matInput name="trackName" placeholder="Name" #namefield="ngModel"
+            [(ngModel)]="trackName" 
+            required>
+        </mat-form-field>
+        <small [hidden]="namefield.valid || namefield.untouched">
+            Field is required.
+        </small>
+
+        <mat-form-field>
+            <mat-label>Minutes</mat-label>
+            <input matInput name="trackMinutes" type="number" max="59" min="0" #minfield="ngModel"
+            [(ngModel)]="trackMinutes" 
+            required>
+        </mat-form-field>
+        <small [hidden]="minfield.valid || minfield.untouched">
+                Field is required.
+        </small>        
+    
+        <mat-form-field>
+            <mat-label>Seconds</mat-label>
+            <input matInput name="trackSeconds" type="number" max="59" min="0" #secfield="ngModel"
+            [(ngModel)]="trackSeconds" 
+            required>
+        </mat-form-field>
+        <small [hidden]="secfield.valid || secfield.untouched">
+                Field is required.
+        </small>        
+
+        <div mat-dialog-actions>
+            <button mat-button 
+            [mat-dialog-close]="{name: trackName, minutes: trackMinutes, seconds: trackSeconds}" 
+            [disabled]="!trackForm.form.valid">
+                Confirm
+            </button>
+            <button mat-button (click)="closeDialog()">
+                Close
+            </button>            
+        </div>
+    </form>
+
+</div>

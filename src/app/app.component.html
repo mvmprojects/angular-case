@@ -1,11 +1,10 @@
 <app-search-bar
         (onArtistSelection)="handleReceivedArtist($event)" >
 </app-search-bar>
-<app-album-list 
+<app-album-list
         [inputArtist]="selectedArtist" 
         (clickEvent)="handleReceivedAlbum($event)" >
 </app-album-list>
-<br>
-<app-track-list
+<app-track-list *ngIf="selectedArtist" 
         [inputAlbum]="selectedAlbum">
 </app-track-list>  
