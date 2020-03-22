@@ -1,1 +1,24 @@
-<p>add-track works!</p>
+<div class="container">
+    <h1>Edit Track</h1>
+    <form>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" required>
+        </div>
+
+        <div class="form-group">
+            <p>Minutes</p>
+            <input type="range" name="minInputName" id="minInputId" value="0" min="0" max="59" oninput="minOutputId.value = minInputId.value">
+            <output name="minOutputName" id="minOutputId">0</output>
+        </div>
+
+        <div class="form-group">
+            <p>Seconds</p>
+            <input type="range" name="secInputName" id="secInputId" value="0" min="0" max="59" oninput="secOutputId.value = secInputId.value">
+            <output name="secOutputName" id="secOutputId">0</output>    
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+
+    </form>
+</div>

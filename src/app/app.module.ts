@@ -17,6 +17,7 @@ import { AlbumListComponent } from './component/album-list/album-list.component'
 import { TrackListComponent } from './component/track-list/track-list.component';
 import { EditTrackComponent } from './component/edit-track/edit-track.component';
 import { AddTrackComponent } from './component/add-track/add-track.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -38,9 +39,11 @@ import { AddTrackComponent } from './component/add-track/add-track.component';
     MatFormFieldModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [EditTrackComponent]
 })
 export class AppModule { }

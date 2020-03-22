@@ -1,1 +1,50 @@
-<p>edit-track works!</p>
+<div>
+    <h1>Edit Track</h1>
+    <!-- <form #trackForm="ngForm">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" 
+            required
+            [(ngModel)]="trackName" name="name"
+            #name="ngModel">
+        </div>
+        <div [hidden]="name.valid || name.pristine">
+            Field is required
+        </div>
+
+        <button type="submit" (click)="updateTrack()" [disabled]="!trackForm.form.valid">Submit</button> -->
+            <!-- </form> -->
+
+    <form #trackForm="ngForm">
+        <mat-form-field>
+            <input matInput name="trackName" placeholder="Name" 
+            [(ngModel)]="trackName" 
+            required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Minutes</mat-label>
+            <input matInput name="trackMinutes" type="number" max="59" min="0" 
+            [(ngModel)]="trackMinutes" 
+            required>
+        </mat-form-field>
+ 
+        <mat-form-field>
+            <mat-label>Seconds</mat-label>
+            <input matInput name="trackSeconds" type="number" max="59" min="0" 
+            [(ngModel)]="trackSeconds" 
+            required>
+        </mat-form-field>
+
+        <div mat-dialog-actions>
+            <button mat-button 
+            [mat-dialog-close]="{name: trackName, minutes: trackMinutes, seconds: trackSeconds}" 
+            cdkFocusInitial [disabled]="!trackForm.form.valid">
+                Confirm
+            </button>
+            <button mat-button (click)="closeDialog()">
+                Close
+            </button>            
+        </div>
+    </form>
+</div>

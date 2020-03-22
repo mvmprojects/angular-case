@@ -17,7 +17,7 @@
     <tr *ngFor="let track of trackList">
       <td>{{track.id}}</td>
       <td>{{track.name}}</td>
-      <td>{{millisToMMSS(track.duration)}}</td>
+      <td>{{formatMillis(track.duration)}}</td>
       <td>
         <button (click)="editTrack(track)" style="margin-left: 20px;">Edit</button>
         <button (click)="deleteTrack(track)">Delete</button>
