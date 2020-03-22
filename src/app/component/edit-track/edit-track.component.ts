@@ -35,9 +35,6 @@ export class EditTrackComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  updateTrack() {
-  }
-
   ngOnInit(): void {
     console.log('data received in dialog: ', this.data);    
   }

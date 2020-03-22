@@ -5,6 +5,8 @@ import { Track } from '../../model/track';
 import { catchError, finalize } from 'rxjs/operators';
 import { EditTrackComponent } from '../edit-track/edit-track.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Artist } from '../../model/artist';
+import { AddTrackComponent } from '../add-track/add-track.component';
 
 @Component({
   selector: 'app-track-list',
@@ -13,7 +15,10 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class TrackListComponent implements OnInit {
 
-  @Input() inputAlbum: Album;
+  // @Input() inputAlbum: Album;
+  @Input() inputs: {album: Album; artist: Artist}
+  inputAlbum: Album;
+  inputArtist: Artist;
   trackList: Track[];
   albumText: string;
   albumTextInit = 'No album selected';
@@ -25,11 +30,14 @@ export class TrackListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.albumText = this.albumTextInit;    
+    this.albumText = this.albumTextInit;
   }
 
   ngOnChanges() {
-    if (this.inputAlbum) {
+    console.log('test ', this.inputs)
+    if (this.inputs.album) {
+      this.inputAlbum = this.inputs.album;
+      this.inputArtist = this.inputs.artist;      
       this.getTracks(this.inputAlbum.id) 
       this.albumText = 'Tracks on album: ' + this.inputAlbum.name;
     } else {
@@ -52,33 +60,44 @@ export class TrackListComponent implements OnInit {
   }
 
   addTrack() {
-    // this.trackService.postTrackDto(track)
-    // .pipe(
-    //   catchError(error => {
-    //     throw error;
-    //   }),
-    //   finalize(() => {
-    //     this.getTracks(this.inputAlbum.id);
-    //   })
-    // )        
-    // .subscribe();    
+    let newTrack = new Track();
+    newTrack.albumId = this.inputAlbum.id,
+    newTrack.albumName = this.inputAlbum.name,
+    newTrack.artistName = this.inputArtist.name,
+    newTrack.artistId = this.inputArtist.id
+
+    const dialogRef = this._dialog.open(AddTrackComponent, {
+      width: '360px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        newTrack.name = result.name;
+        newTrack.duration = this.convertToMillis(result.minutes, result.seconds);
+        this.trackService.postTrackDto(newTrack)
+        .pipe(
+          catchError(error => {
+            throw error;
+          }),
+          finalize(() => {
+            this.getTracks(this.inputAlbum.id);
+          })
+        )        
+        .subscribe();    
+      }
+    });
   }
 
   editTrack(track: Track) {
-    console.log(track);
     const mappedTrack = this.mapTrackToEditable(track);
-    // open modal
+
     const dialogRef = this._dialog.open(EditTrackComponent, {
       width: '360px',
       data: mappedTrack
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result)
       if (result) {
         track.name = result.name;
         track.duration = this.convertToMillis(result.minutes, result.seconds);
-        console.log(track);
         this.trackService.updateTrack(track)
         .pipe(
           catchError(error => {

@@ -27,7 +27,7 @@ export class TrackService {
   // }
 
   postTrackDto(track: Track): Observable<Track> {
-    return this.http.post<Track>(this.apiUrl + `create`, track)
+    return this.http.post<Track>(this.apiUrl, track)
     .pipe(
       catchError(this.handleError<Track>(`postTrackDto`, track))
     );

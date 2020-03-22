@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Track } from '../../model/track';
+import { MatButton } from '@angular/material/button';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-track',
@@ -8,13 +10,17 @@ import { Track } from '../../model/track';
 })
 export class AddTrackComponent implements OnInit {
 
-  model: Track;
+  trackName: string;
+  trackMinutes: number;
+  trackSeconds: number;
 
-  newTrack() {
-    this.model = new Track();
-  }
+  constructor(
+    public dialogRef: MatDialogRef<AddTrackComponent>    
+  ) { }
 
-  constructor() { }
+  closeDialog() {
+    this.dialogRef.close();
+  }  
 
   ngOnInit(): void {
   }

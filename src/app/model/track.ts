@@ -1,5 +1,9 @@
 export class Track {
-    name: string;
     id: number;
+    name: string;
     duration: number;
+    albumId: number;
+    albumName: string;
+    artistId: number;     
+    artistName: string;   
 }
