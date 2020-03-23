@@ -5,7 +5,10 @@
     
     <div *ngIf="isLoading"><mat-spinner diameter="50"></mat-spinner></div>
 
-    <button mat-raised-button *ngIf="!isLoading" style="width:120px" (click)="addTrack()" style="margin-bottom: 1em;">Add Track</button>
+    <button mat-raised-button *ngIf="!isLoading" style="width:120px" (click)="addTrack()" style="margin-bottom: 1em;">
+      Add Track
+    </button>
+
     <table *ngIf="!isLoading" id="trackTable">
       <thead>
       <tr>
