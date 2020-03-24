@@ -15,12 +15,11 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   search(filter: {name: string} = {name: ''}, page = 1): Observable<IArtistResponse> {
-    return this.http.get<IArtistResponse>(this.apiUrl + 'artist/getlist/') //
+    return this.http.get<IArtistResponse>(this.apiUrl + 'artist/getlist/')
     .pipe(
       tap((response: IArtistResponse) => {
         response.results = response.results
           .map(artist => new Artist(artist.id, artist.name))
-          // .filter(artist => artist.name.includes(filter.name))
           .filter(artist => new RegExp(filter.name, 'i').test(artist.name))
 
         return response;

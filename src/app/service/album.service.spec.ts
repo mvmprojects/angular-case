@@ -27,15 +27,7 @@ describe('AlbumService', () => {
     httpMock.verify();
   });
 
-  const dummyAlbumListResponse: Album[] =
-  [
-    {
-      id: 1, name: 'a', artistId: 1, artistName: 'a'
-    },
-    {
-      id: 2, name: 'b', artistId: 1, artistName: 'a'
-    }
-  ];
+  const dummyAlbumListResponse: Album[] = [];
 
   it('getByArtistId should return data', () => {
     service.getByArtistId(1).subscribe((res) => {

@@ -27,28 +27,45 @@ describe('TrackService', () => {
     httpMock.verify();
   });
 
-  const dummyTrackListResponse: Track[] =
-  [
-    {
-      id: 1, name: 'a', duration: 1, albumId: 1, albumName: 'a', artistId: 1, artistName: 'a'
-    },
-    {
-      id: 2, name: 'a', duration: 1, albumId: 1, albumName: 'a', artistId: 1, artistName: 'a'
-    }
-  ];
+  const dummyTrackListResponse: Track[] = [];
 
-  it('getByAlbumId should return data', () => {
+  const dummyTrack = {
+    name: 'name'
+  }
+
+  it('getByAlbumId should take an id and return data', () => {
     service.getByAlbumId(1).subscribe((res) => {
       expect(res).toEqual(dummyTrackListResponse);
     });
-    const req = httpMock.expectOne('http://localhost:8080/track/byalbumid/1');
-    expect(req.request.method).toBe('GET');
-    req.flush(dummyTrackListResponse);
+    const testRequest = httpMock.expectOne('http://localhost:8080/track/byalbumid/1');
+    expect(testRequest.request.method).toBe('GET');
+    testRequest.flush(dummyTrackListResponse);
   });  
 
-  // postTrackDto
+  it('postTrackDto should return data and use http method post', () => {
+    service.postTrackDto(<Track>dummyTrack).subscribe((res) => {
+      expect(res).toEqual(<Track>dummyTrack);
+    });
+    const testRequest = httpMock.expectOne('http://localhost:8080/track/');
+    expect(testRequest.request.method).toBe('POST');
+    testRequest.flush(<Track>dummyTrack);
+  });
 
-  // updateTrack
+  it('updateTrack should return data and use http method put', () => {
+    service.updateTrack(<Track>dummyTrack).subscribe((res) => {
+      expect(res).toEqual(<Track>dummyTrack);
+    });
+    const testRequest = httpMock.expectOne('http://localhost:8080/track/');
+    expect(testRequest.request.method).toBe('PUT');
+    testRequest.flush(<Track>dummyTrack);
+  });
 
-  // deleteTrack
+  it('deleteTrack method should take an id and use http method delete', () => {
+    service.deleteTrack(1).subscribe((res) => {
+      expect(res).toEqual(<Track>dummyTrack);
+    });
+    const testRequest = httpMock.expectOne('http://localhost:8080/track/1');
+    expect(testRequest.request.method).toBe('DELETE');
+    testRequest.flush(<Track>dummyTrack);
+  });  
 });

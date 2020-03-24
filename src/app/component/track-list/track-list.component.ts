@@ -21,6 +21,7 @@ export class TrackListComponent implements OnInit {
   albumText: string;
   albumTextInit = 'No album selected';
   isLoading = true;
+  dialogRef: any;
 
   constructor(
     private trackService: TrackService,
@@ -61,10 +62,10 @@ export class TrackListComponent implements OnInit {
     newTrack.artistName = this.inputAlbum.artistName,
     newTrack.artistId = this.inputAlbum.artistId
 
-    const dialogRef = this._dialog.open(AddTrackComponent, {
+    this.dialogRef = this._dialog.open(AddTrackComponent, {
       width: '360px'
     });
-    dialogRef.afterClosed().subscribe(result => {
+    this.dialogRef.afterClosed().subscribe(result => {
       if (result) {
         newTrack.name = result.name;
         newTrack.duration = this.convertToMillis(result.minutes, result.seconds);
@@ -85,11 +86,11 @@ export class TrackListComponent implements OnInit {
   editTrack(track: Track) {
     const mappedTrack = this.mapTrackToEditable(track);
 
-    const dialogRef = this._dialog.open(EditTrackComponent, {
+    this.dialogRef = this._dialog.open(EditTrackComponent, {
       width: '360px',
       data: mappedTrack
     });
-    dialogRef.afterClosed().subscribe(result => {
+    this.dialogRef.afterClosed().subscribe(result => {
       if (result) {
         track.name = result.name;
         track.duration = this.convertToMillis(result.minutes, result.seconds);
@@ -108,14 +109,15 @@ export class TrackListComponent implements OnInit {
   }
 
   deleteTrack(track: Track) {
+    this.trackList = this.trackList.filter(t => t !== track);
     this.trackService.deleteTrack(track.id)
     .pipe(
       catchError(error => {
         throw error;
       }),
-      finalize(() => {
-        this.getTracks(this.inputAlbum.id);
-      })
+      // finalize(() => {
+      //   this.getTracks(this.inputAlbum.id);
+      // })
     )        
     .subscribe();
   }

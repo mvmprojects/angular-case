@@ -27,15 +27,7 @@ describe('DataService', () => {
     httpMock.verify();
   });    
 
-  const aList: Artist[] =
-  [
-    {
-      id: 1, name: 'abc'
-    },
-    {
-      id: 2, name: 'cba'
-    }
-  ];
+  const aList: Artist[] = [];
 
   const aResp: IArtistResponse = {
     total: 2,
