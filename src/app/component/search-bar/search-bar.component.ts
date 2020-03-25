@@ -43,7 +43,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   handleSelected(artist: Artist) {
-    console.log('selection from search-bar: ', artist)
+    // console.log('selection from search-bar: ', artist)
     this.onArtistSelection.emit(artist);
   }  
 
