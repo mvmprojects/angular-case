@@ -13,17 +13,23 @@
 
         <mat-form-field>
             <mat-label>Minutes</mat-label>
-            <input matInput name="trackMinutes" type="number" max="59" min="0" 
+            <input matInput name="trackMinutes" type="number" max="59" min="0" #minfield="ngModel"
             [(ngModel)]="trackMinutes" 
-            required>
+            required appDurationValidation>
         </mat-form-field>
+        <small [hidden]="minfield.valid">
+            Field is required. Value can't be greater than 59 or smaller than 0.
+        </small>        
  
         <mat-form-field>
             <mat-label>Seconds</mat-label>
-            <input matInput name="trackSeconds" type="number" max="59" min="0" 
-            [(ngModel)]="trackSeconds" 
-            required>
+            <input matInput name="trackSeconds" type="number" max="59" min="0" #secfield="ngModel"
+            [(ngModel)]="trackSeconds"    
+            required appDurationValidation>
         </mat-form-field>
+        <small [hidden]="secfield.valid">
+            Field is required. Value can't be greater than 59 or smaller than 0.
+        </small>        
 
         <div mat-dialog-actions>
             <button mat-button 
