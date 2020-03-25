@@ -26,6 +26,18 @@ describe('workspace-project App', () => {
     page.selectAlbum();
   } );  
 
+  it('should provide a button for Add Track with three input fields', () => {
+    page.useAddButton();
+  } );    
+
+  it('should provide a button for Edit Track with three input fields', () => {
+    page.useEditButton();
+  } );      
+
+  it('should provide a button for Delete Track', () => {
+    page.useDeleteButton();
+  } );        
+
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);

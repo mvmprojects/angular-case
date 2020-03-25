@@ -11,6 +11,7 @@ import { TrackListComponent } from './component/track-list/track-list.component'
 import { EditTrackComponent } from './component/edit-track/edit-track.component';
 import { AddTrackComponent } from './component/add-track/add-track.component';
 import { AppMaterialModule } from './app-material/app-material.module';
+import { DurationValidationDirective } from './directive/duration-validation.directive';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AppMaterialModule } from './app-material/app-material.module';
     AlbumListComponent,
     TrackListComponent,
     EditTrackComponent,
-    AddTrackComponent
+    AddTrackComponent,
+    DurationValidationDirective
   ],
   imports: [
     BrowserModule,
