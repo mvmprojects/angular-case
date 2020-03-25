@@ -12,6 +12,7 @@ import { switchMap, debounceTime, tap, finalize } from 'rxjs/operators';
 })
 export class SearchBarComponent implements OnInit {
 
+  title = 'Case App';
   isLoading = false;
   filteredArtists: Artist[] = [];
   mainForm: FormGroup;
@@ -43,7 +44,6 @@ export class SearchBarComponent implements OnInit {
   }
 
   handleSelected(artist: Artist) {
-    // console.log('selection from search-bar: ', artist)
     this.onArtistSelection.emit(artist);
   }  
 

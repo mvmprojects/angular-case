@@ -5,7 +5,7 @@
     
     <div *ngIf="isLoading"><mat-spinner diameter="50"></mat-spinner></div>
 
-    <button mat-raised-button *ngIf="!isLoading" style="width:120px" (click)="addTrack()" style="margin-bottom: 1em;">
+    <button mat-raised-button *ngIf="!isLoading" class="addbutton" style="width:120px" (click)="addTrack()" style="margin-bottom: 1em;">
       Add Track
     </button>
 
@@ -23,8 +23,8 @@
         <td>{{track.name}}</td>
         <td>{{formatMillis(track.duration)}}</td>
         <td>
-          <button mat-raised-button (click)="editTrack(track)">Edit</button>
-          <button mat-raised-button (click)="deleteTrack(track)">Delete</button>
+          <button mat-raised-button (click)="editTrack(track)" class="editbutton">Edit</button>
+          <button mat-raised-button (click)="deleteTrack(track)" class="deletebutton">Delete</button>
         </td>
       </tr>
       </tbody>
