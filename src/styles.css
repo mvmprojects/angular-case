@@ -5,6 +5,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .simple-container {
     display: flex;
-    padding-top: 1em;
-    padding-left: 1em;
+    justify-content: left;
+    padding: 1em 1em 0em 1em;
 }

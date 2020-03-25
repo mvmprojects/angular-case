@@ -22,10 +22,6 @@ export class TrackService {
     );
   }  
 
-  // postTrackDto(track: Track) {
-  //   return this.http.post(this.apiUrl + 'create', track, { observe: 'response' });
-  // }
-
   postTrackDto(track: Track): Observable<Track> {
     return this.http.post<Track>(this.apiUrl, track)
     .pipe(
