@@ -32,7 +32,7 @@ describe('TrackListComponent', () => {
       component = new TrackListComponent(mockTrackService, mockDialog);
       // needs inputAlbum to be known so it can attach new track to this album
       const album = new Album();
-      album.id = 1;      
+      album.albumId = 1;      
       component.inputAlbum = album;      
   }));
 
@@ -48,7 +48,7 @@ describe('TrackListComponent', () => {
       component.trackList = tracks;
       component.deleteTrack(tracks[2]);
       expect(component.trackList.length).toBe(2);
-      expect(component.trackList[0].id).toBe(1);
+      expect(component.trackList[0].trackId).toBe(1);
       expect(component.trackList[1].name).toBe('b');
     });
 

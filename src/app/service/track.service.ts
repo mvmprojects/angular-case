@@ -10,34 +10,42 @@ import { Track } from '../model/track';
 })
 export class TrackService {
 
-  apiUrl = environment.apiUrl + 'track/';
+  apiUrl = environment.apiUrl; // + 'track/';
 
   constructor(
     public http: HttpClient) { }
 
+  constructUrl(albumId: number): string {
+    const myUrl = `${this.apiUrl + `albums`}/${albumId}/tracks`;
+    return myUrl;
+  }
+
   getByAlbumId(id: number): Observable<Track[]> {
-    const url = `${this.apiUrl + `byalbumid`}/${id}`;
+    // const url = `${this.apiUrl + `byalbumid`}/${id}`;
+    const url = this.constructUrl(id);
     return this.http.get<Track[]>(url).pipe(
       catchError(this.handleError<Track[]>(`was fetching by album id=${id}`))
     );
   }  
 
   postTrackDto(track: Track): Observable<Track> {
-    return this.http.post<Track>(this.apiUrl, track)
+    const url = this.constructUrl(track.parentId);
+    return this.http.post<Track>(url, track)
     .pipe(
       catchError(this.handleError<Track>(`postTrackDto`, track))
     );
   }  
 
   updateTrack(track: Track): Observable<Track> {
-    return this.http.put<Track>(this.apiUrl, track)
+    const url = this.constructUrl(track.parentId) + '/' + track.trackId;
+    return this.http.put<Track>(url, track)
     .pipe(
       catchError(this.handleError<Track>(`updateTrack`, track))
     );
   }    
 
-  deleteTrack(id: number): Observable<{}> {
-    const url = this.apiUrl + id;
+  deleteTrack(track: Track): Observable<{}> {
+    const url = this.constructUrl(track.parentId) + '/' + track.trackId;
     return this.http.delete(url)
       .pipe(
         catchError(this.handleError('deleteTrack'))

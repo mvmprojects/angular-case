@@ -1,6 +1,6 @@
 export class Album {
     name: string;
-    id: number;
+    albumId: number;
     artistName: string;
     artistId: number;
 }

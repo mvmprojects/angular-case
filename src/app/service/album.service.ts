@@ -10,12 +10,13 @@ import { Album } from '../model/album';
 })
 export class AlbumService {
 
-  apiUrl: string = environment.apiUrl + 'album/';
+  apiUrl: string = environment.apiUrl;// + 'album/';
 
   constructor(private http: HttpClient) {}
 
   getByArtistId(id: number): Observable<Album[]> {
-    const url = `${this.apiUrl + `byartistid`}/${id}`;
+    //const url = `${this.apiUrl + `byartistid`}/${id}`;
+    const url = `${this.apiUrl + `artists`}/${id}/albums`;
     return this.http.get<Album[]>(url).pipe(
       catchError(this.handleError<Album[]>(`was fetching by artist id=${id}`))
     );

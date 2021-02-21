@@ -25,7 +25,7 @@ export class AlbumListComponent implements OnInit {
 
   ngOnChanges() {
     if (this.inputArtist) {
-      this.getAlbums(this.inputArtist.id) 
+      this.getAlbums(this.inputArtist.artistId) 
       this.artistText = 'Albums by: ' + this.inputArtist.name;
     }
   }

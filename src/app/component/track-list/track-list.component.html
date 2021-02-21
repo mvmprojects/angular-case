@@ -19,9 +19,10 @@
       </thead>
       <tbody>
       <tr *ngFor="let track of trackList">
-        <td>{{track.id}}</td>
+        <td>{{track.trackId}}</td>
         <td>{{track.name}}</td>
-        <td>{{formatMillis(track.duration)}}</td>
+        <!-- <td>{{formatMillis(track.duration)}}</td> -->
+        <td>{{formatDuration(track.minutes, track.seconds)}}</td>
         <td>
           <button mat-raised-button (click)="editTrack(track)" class="editbutton">Edit</button>
           <button mat-raised-button (click)="deleteTrack(track)" class="deletebutton">Delete</button>

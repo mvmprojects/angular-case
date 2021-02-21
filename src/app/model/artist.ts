@@ -1,5 +1,5 @@
 export class Artist {
-    constructor(public id: number, public name: string) {}
+    constructor(public artistId: number, public name: string) {}
 }
   
 export interface IArtistResponse {
