@@ -1,5 +1,7 @@
 # CaseApp
 
+(this project calls a backend API for data, and this backend is in another repository: https://github.com/mvmprojects/dotnet-case)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.15.
 
 ## Development server
